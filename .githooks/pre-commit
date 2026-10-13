@@ -1,0 +1,9 @@
+#!/bin/sh
+# Pre-commit checks: the repository must stay fit to go public, and formatting must be clean.
+# Enable once per clone with: git config core.hooksPath .githooks
+set -eu
+
+cd "$(git rev-parse --show-toplevel)"
+
+scripts/check-public.sh
+cargo fmt --check

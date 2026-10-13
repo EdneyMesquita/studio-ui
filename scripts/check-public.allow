@@ -1,0 +1,8 @@
+# Files that may contain private IPv4 addresses (10.x, 172.16-31.x, 192.168.x) for check-public.sh.
+#
+# One path or shell glob per line, relative to the repository root. Blank lines and lines starting with
+# "#" are ignored. Matching uses the shell's case patterns, so "*" also matches across "/".
+#
+# Keep this list short. Prefer fixing the content (use a documentation address such as 192.0.2.10 or
+# a placeholder name) over adding a file here. Nothing is allow-listed for the other rules: tokens,
+# private keys, home-directory paths, internal host names and email addresses are never allowed.
