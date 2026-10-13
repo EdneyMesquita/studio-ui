@@ -72,7 +72,8 @@ names of private applications or products, and it does not know which values are
 - Protect the default branch: require the CI checks to pass before merging.
 - Actions: the workflow uses only the default `GITHUB_TOKEN`. Organization accounts also need a
   `GITLEAKS_LICENSE` secret for the gitleaks action. A personal account does not.
-- Check that the CI runs green on the private repository before it is made public.
+- Restore the workflow's `push:` and `pull_request:` triggers (it is `workflow_dispatch` only while the
+  repository is private, to save Actions minutes), then check that it runs green.
 
 ## 6. Change the visibility
 

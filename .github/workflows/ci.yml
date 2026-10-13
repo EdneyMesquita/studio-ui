@@ -1,8 +1,10 @@
 name: CI
 
+# Manual only while the repository is private: the account's Actions minutes are not used for it.
+# The same checks run locally in scripts/ci-local.sh, enforced by .githooks/pre-push.
+# Restore `push:` and `pull_request:` when the repository goes public (public repos run for free).
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read

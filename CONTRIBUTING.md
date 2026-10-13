@@ -79,10 +79,8 @@ Run each of these and fix what they report:
 
 ```sh
 cargo fmt --all
-cargo clippy --all-targets -- -D warnings
-cargo test
-cargo build --examples
-bash scripts/check-public.sh
+bash scripts/ci-local.sh          # what CI checks: scan, fmt, clippy (both feature sets), tests, examples, gitleaks
+bash scripts/ci-local.sh --quick  # without the example build and the history scan
 ```
 
 Add a unit test for any pure logic you change (layout arithmetic, filtering, scoring). Widget painting is
@@ -92,13 +90,16 @@ Update `CHANGELOG.md` under "Unreleased" for any user-visible change.
 
 ## Git hooks
 
-Enable the repository's pre-commit hook once per clone:
+Enable the repository's hooks once per clone:
 
 ```sh
 git config core.hooksPath .githooks
 ```
 
-The hook runs `scripts/check-public.sh` and `cargo fmt --check`.
+`pre-commit` runs `scripts/check-public.sh` and `cargo fmt --check`. `pre-push` runs the full
+`scripts/ci-local.sh`. While the repository is private the GitHub workflow runs only on demand
+(`workflow_dispatch`), so the pre-push hook is the gate; install gitleaks so it can scan
+(`brew install gitleaks`).
 
 ## Keeping the repository public-ready
 

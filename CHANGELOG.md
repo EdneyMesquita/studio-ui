@@ -32,7 +32,8 @@ Initial extraction from the author's Modbus desktop client.
 - Gallery example: `cargo run --example gallery` shows every widget section in both themes.
 - `scripts/check-public.sh`, a public-readiness scan, run by a pre-commit hook (`.githooks/pre-commit`) and by CI.
 - CI workflow: format, clippy, tests and example builds on Linux, macOS and Windows; the public-readiness check
-  and a gitleaks secret scan on Linux.
+  and a gitleaks secret scan on Linux. Manual only (`workflow_dispatch`) while the repository is private.
+- `scripts/ci-local.sh`: the same checks on the developer's machine, run by the `pre-push` hook.
 
 ### Changed (relative to the source application)
 

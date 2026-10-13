@@ -250,7 +250,9 @@ cargo build --examples
 bash scripts/check-public.sh
 ```
 
-CI runs the format, clippy, test and example builds on Linux, macOS and Windows. The Linux build installs
+`bash scripts/ci-local.sh` runs all of these plus a gitleaks scan; the `pre-push` hook runs it. While the
+repository is private the GitHub workflow runs only when started by hand. When enabled, it runs the format,
+clippy, test and example builds on Linux, macOS and Windows. The Linux build installs
 the development packages the examples need (xkbcommon, Mesa GL, Wayland, X11, Xcursor, Xrandr and Xi). The public-readiness check and a
 gitleaks secret scan run on Linux, in their own jobs.
 
