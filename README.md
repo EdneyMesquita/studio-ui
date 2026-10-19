@@ -11,7 +11,7 @@ It is:
 - Inter and JetBrains Mono, embedded, with named font helpers.
 - The Lucide icon font (153 glyphs), with glyph constants.
 - Widgets painted by hand to match the family's design in both themes: buttons, data grids, inspector panes,
-  the command palette, charts, dialogs, menus, toasts, notices and form fields.
+  the command palette, charts, timelines, dialogs, menus, toasts, notices and form fields.
 
 It is not:
 
@@ -167,10 +167,12 @@ Every module is under `studio_ui::widgets`.
 | `sec` | `sec_h`, `sec_h_with`, `kv`: section heads and key/value rows for inspector panes |
 | `seg` | `seg`, `seg_fit`, `seg_stretch`, `seg_width`, `SegItem`: segmented control |
 | `switch` | `switch`: toggle with a title and a description |
+| `timeline` | `Timeline`, `Lane`, `Item`, `Window`, `Axis`, `Layout`: swimlanes of spans and marks on a time axis with the "now" edge at the right, hover tooltips, click selection and optional zoom and scroll; `legend_item` and `paint_swatch` for its legend |
 | `toast` | `Toast` and `toast::show`: transient confirmation at the bottom right, shown for four seconds |
 
 Examples in each module's documentation show the call patterns. The gallery example shows every section in
-both themes, with the calls that build each one: `cargo run --example gallery`.
+both themes, with the calls that build each one: `cargo run --example gallery`. `cargo run --example timeline`
+draws a bus-like and a publish-like timeline.
 
 ### Command palette
 

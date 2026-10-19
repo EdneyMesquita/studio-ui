@@ -20,9 +20,15 @@ Initial extraction from the author's Modbus desktop client.
   `theme::paint_icon`. The font is produced by `tools/icons/generate.py` from a pinned lucide-static release
   (1.56.0), whose tarball is checked against its SHA-512 integrity string before use.
 - Widgets: `button`, `chart`, `check`, `chip`, `dialog`, `field`, `fit`, `grid`, `inspector`, `menu`,
-  `metrics`, `notice`, `palette`, `rich_grid`, `sec`, `seg`, `switch` and `toast`, with the shared helpers in
-  `widgets`.
+  `metrics`, `notice`, `palette`, `rich_grid`, `sec`, `seg`, `switch`, `timeline` and `toast`, with the
+  shared helpers in `widgets`.
 - `dialog::guard`: the typed confirmation of a dangerous action.
+- `timeline`: a protocol-neutral timeline. Lanes of spans and marks on a time axis with the "now" edge at the
+  right; kinds that map onto theme colours (send, wait, receive, ok, warn, danger, idle, faint, a hatched
+  timeout and a hatched gap); an automatic millisecond axis or the caller's ticks; two layouts (`DEFAULT`, the
+  24 px rows of Mb Studio's bus timeline, and `SPACED`, the 26 px lanes of OPC Studio's publish timeline); a
+  hover tooltip per item, click selection, and opt-in zoom and scroll that hand the new window back. The
+  geometry is pure and tested. `cargo run --example timeline` draws a bus-like and a publish-like timeline.
 - `PaletteConfig`, set on `PaletteState::config`: the search hint, the groups listed before anything is typed,
   the rows shown per group, the inline groups, and the text shown when nothing matches.
 - `inspector::width` and `inspector::set_width`, so an application can save the inspector width between runs.
