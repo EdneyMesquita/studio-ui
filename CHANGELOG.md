@@ -51,6 +51,19 @@ Initial extraction from the author's Modbus desktop client.
   layout maths in `chrome` (`clamp_side_width`, `shares`, `shrink_all`, `find_ci`, `repaint_after`). Each
   module's docs map Mb Studio's and OPC Studio's code onto it. `cargo run --example chrome` draws the
   whole frame with fake data.
+- `hexview`: a protocol-neutral hex field view. `FieldTable` (the grid style of OPC Studio's trace inspector,
+  `off │ field │ value │ bytes`, virtualised, or the mini style of Mb Studio's frame inspector, `bytes · field
+  · value` with wrapping values, a check glyph and a faint note) and `HexBlock` (16-byte lines in a scroll
+  area that lays out the lines in view only, or bytes wrapped at the width) over plain `Field`s: name, value,
+  depth, byte range or none for a derived row, group, class, tone, check, varint. Byte classes are colour
+  slots (`Plain`, `Header`, `Length`, `Id`, `Kind`, `Value`, `Status`, `Check`); the legend's words are the
+  application's. The table and the block of one `id_salt` share their hover both ways, and a click on a byte
+  hands back the innermost field under it; a varint's bytes are joined by a rule; `HexBlock::context` tints a
+  selected field's parent group. `Fields` and `from_fn` lend an application's own rows without copying them.
+  The layout maths and the field maths are pure and tested; the module's docs map OPC Studio's trace
+  inspector and decoder, Mb Studio's frame inspector and the MQTT packet inspector onto it.
+  `cargo run --example hexview` draws an OPC UA, a Modbus and an MQTT message.
+- `RichGrid::scroll_to`, to bring a row into view.
 
 ### Changed (relative to the source application)
 

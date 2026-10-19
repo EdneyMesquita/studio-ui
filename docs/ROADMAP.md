@@ -34,8 +34,8 @@ API friction found while writing the gallery:
   depend on the system.
 - Possibly convert this repository into a `studio-kit` workspace that holds the crates together, so that they
   share one release cycle and one egui version. Not decided.
-- Generic widgets for the planned family views: a tree row and a hex dump with highlighted field spans (timeline
-  lanes are in, as `widgets::timeline`). Each is generic user-interface code, so it belongs here rather than in an application.
+- Generic widgets for the planned family views: a live tree and a value tree (timeline lanes and the hex field
+  view are in, as `widgets::timeline` and `widgets::hexview`). Each is generic user-interface code, so it belongs here rather than in an application.
 - Wizard steps for dialogs with several sections, so that a multi-step task does not need a bespoke dialog.
 - A `tag` pill, a small labelled chip, for labelled tags in lists and forms. Not in the crate yet.
 - Snapshot tests with egui_kittest in CI (Linux, software rendering). Painting is checked by eye today, in the

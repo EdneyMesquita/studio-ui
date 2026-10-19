@@ -9,6 +9,7 @@ pub mod dialog;
 pub mod field;
 pub mod fit;
 pub mod grid;
+pub mod hexview;
 pub mod inspector;
 pub mod menu;
 pub mod metrics;

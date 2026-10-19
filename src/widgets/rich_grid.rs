@@ -212,6 +212,11 @@ impl<'a> RichGrid<'a> {
         self.selected = row;
         self
     }
+    /// Scroll this row into view.
+    pub fn scroll_to(mut self, row: Option<usize>) -> Self {
+        self.scroll_to = row;
+        self
+    }
     /// A background tint per row (rows flagged by the view), under hover and selection.
     pub fn row_bg(mut self, f: &'a dyn Fn(usize) -> Option<Color32>) -> Self {
         self.row_bg = Some(f);

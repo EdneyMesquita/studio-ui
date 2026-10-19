@@ -31,6 +31,7 @@ src/
     field.rs       qfield, qselect, search_field, text_input, text_input_invalid, password_input
     fit.rs         Fit levels, row and flow arithmetic for collapsing toolbars
     grid.rs        Grid, Column: virtualized grid
+    hexview.rs     FieldTable, HexBlock: decoded fields and their bytes, linked
     inspector.rs   Inspector: resizable side pane; shared width
     menu.rs        menu items and popups in the family frame; dev_once / dev_open
     metrics.rs     metrics strip
@@ -45,13 +46,14 @@ assets/fonts/      TTF files and their license texts
 tools/icons/       generator for the icon font and src/icons.rs
 examples/gallery.rs  every widget section, in both themes (cargo run --example gallery)
 examples/chrome.rs   the whole IDE frame with fake data (cargo run --example chrome)
+examples/hexview.rs  three decoded messages (cargo run --example hexview)
 ```
 
 Dependencies point one way. `theme` depends only on egui. `icons` depends on nothing. The widgets depend on
 `theme`, `icons` and the helpers in `widgets/mod.rs`. Some widgets use each other where the design does: the
 dialog uses `icon_button`, the connection chip and the text input; the menu uses the chip; `field`'s select
 and the palette use the menu's popups or its debugging hook; `rich_grid` reuses `grid`'s `Column`, `HEADER_H`
-and `ROW_H`. No module depends on an application.
+and `ROW_H`, and `hexview`'s grid-style table is a `rich_grid`. No module depends on an application.
 
 `chrome` sits on top of `widgets`: its modules use the strip, text and tooltip helpers, chips, menus and the
 search field, and nothing in `widgets` uses `chrome`. A chrome widget takes plain data and returns one

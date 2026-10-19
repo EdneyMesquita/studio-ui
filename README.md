@@ -158,6 +158,7 @@ Every module is under `studio_ui::widgets`.
 | `field` | `qfield` and `qselect` (query-bar fields; `qselect` returns whether the selection changed), `search_field`, `text_input`, `text_input_invalid`, `password_input` |
 | `fit` | `Fit` and the `row` and `flow` helpers: toolbars that collapse to icons, then move items into a menu |
 | `grid` | `Grid` and `Column`: virtualized data grid with a sticky header, an optional sticky first column, and click, double-click and right-click per row |
+| `hexview` | `FieldTable`, `HexBlock`, `Field`, `Class`, `legend`: a table of decoded fields and their bytes in hex, coloured by class, linked both ways (hover, click a byte to find its field), in the grid or mini style and in 16-byte lines or wrapped |
 | `inspector` | `Inspector`: resizable right-hand pane with head, body and optional foot; one width shared by all inspectors (`width`, `set_width`) |
 | `menu` | Items (`item`, `item_disabled`, `danger`, `option`, `conn_item`, `open_conn_item`), `sep`, `head`, and popups (`context`, `dropdown`, `select_popup`, `select_popup_scroll`, `is_open`) in the family frame |
 | `metrics` | `metrics` and `Metric`: strip of tonal cells with hairline rules |
@@ -172,7 +173,7 @@ Every module is under `studio_ui::widgets`.
 
 Examples in each module's documentation show the call patterns. The gallery example shows every section in
 both themes, with the calls that build each one: `cargo run --example gallery`. `cargo run --example timeline`
-draws a bus-like and a publish-like timeline.
+draws a bus-like and a publish-like timeline. `cargo run --example hexview` draws three decoded messages.
 
 ### Command palette
 
