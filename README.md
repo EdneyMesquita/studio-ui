@@ -155,6 +155,7 @@ Every module is under `studio_ui::widgets`.
 | `check` | `checkbox`, `checkbox_sm`: checkbox with a label |
 | `chip` | `chip` (connection chip with initials), `dot`, `paint_live_dot`, `status_pill`, `Status`, `ChipSize` |
 | `dialog` | `Dialog`: modal with title, icon, body and footer; `field_row` for labelled rows; `guard` for the typed confirmation of a dangerous action |
+| `docview` | `Document`, `Check`, `WorkingCopy`, `source`, `diff`, `yaml_spans`: a project file as table, source and diff, with its toolbar, the validation strip and Save / Revert on a working copy |
 | `field` | `qfield` and `qselect` (query-bar fields; `qselect` returns whether the selection changed), `search_field`, `text_input`, `text_input_invalid`, `password_input` |
 | `fit` | `Fit` and the `row` and `flow` helpers: toolbars that collapse to icons, then move items into a menu |
 | `granted` | `GrantList`, `Grant`, `State`: what a client requested and what the server granted, the revised ones marked, as inline rows or a grid with what is in effect |
@@ -174,7 +175,7 @@ Every module is under `studio_ui::widgets`.
 
 Examples in each module's documentation show the call patterns. The gallery example shows every section in
 both themes, with the calls that build each one: `cargo run --example gallery`. `cargo run --example timeline`
-draws a bus-like and a publish-like timeline. `cargo run --example hexview` draws three decoded messages, `cargo run --example granted` two negotiations.
+draws a bus-like and a publish-like timeline. `cargo run --example hexview` draws three decoded messages, `cargo run --example granted` two negotiations, `cargo run --example docview` two project files.
 
 ### Command palette
 

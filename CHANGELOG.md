@@ -72,6 +72,14 @@ Initial extraction from the author's Modbus desktop client.
   unsupported value carries the mark (warn, medium weight); "not sent: as requested" and "absent: <default>"
   are the states' own words. `inline_pieces` and `column_pieces` are pure and tested; `granted_color` and
   `granted_font` serve grid cells that paint a granted value themselves. `cargo run --example granted`.
+- `docview`: a protocol-neutral document view. `Document` draws a project file's toolbar (the seg of its views,
+  the path with a tooltip, the unsaved-edits dot, the application's actions, Revert and Save, Ctrl+S; labels
+  collapse to icons and marked actions move into "⋯" as Mb Studio's map toolbar did) and the validation strip
+  of `Check`s; `source` and `source_inline` draw a text coloured by `Tok` spans (`source_job`, and
+  `yaml_spans` for the family's YAML files); `diff` draws `git diff`-style lines with their counts;
+  `WorkingCopy<T>` keeps the saved and the edited document, a revision, dirty, revert, saved and reload. The
+  module's docs map Mb Studio's register map, OPC Studio's watch list and the MQTT topic map onto it.
+  `cargo run --example docview`.
 
 ### Changed (relative to the source application)
 

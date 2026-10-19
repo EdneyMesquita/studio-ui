@@ -6,6 +6,7 @@ pub mod chart;
 pub mod check;
 pub mod chip;
 pub mod dialog;
+pub mod docview;
 pub mod field;
 pub mod fit;
 pub mod granted;
