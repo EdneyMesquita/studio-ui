@@ -18,6 +18,7 @@ pub mod rich_grid;
 pub mod sec;
 pub mod seg;
 pub mod switch;
+pub mod timeline;
 pub mod toast;
 
 use std::sync::Arc;
