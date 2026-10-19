@@ -30,6 +30,7 @@ src/
     dialog.rs      Dialog, field_row, guard
     field.rs       qfield, qselect, search_field, text_input, text_input_invalid, password_input
     fit.rs         Fit levels, row and flow arithmetic for collapsing toolbars
+    granted.rs     GrantList, Grant, State: requested → granted values
     grid.rs        Grid, Column: virtualized grid
     hexview.rs     FieldTable, HexBlock: decoded fields and their bytes, linked
     inspector.rs   Inspector: resizable side pane; shared width
@@ -47,6 +48,7 @@ tools/icons/       generator for the icon font and src/icons.rs
 examples/gallery.rs  every widget section, in both themes (cargo run --example gallery)
 examples/chrome.rs   the whole IDE frame with fake data (cargo run --example chrome)
 examples/hexview.rs  three decoded messages (cargo run --example hexview)
+examples/granted.rs  two negotiations (cargo run --example granted)
 ```
 
 Dependencies point one way. `theme` depends only on egui. `icons` depends on nothing. The widgets depend on

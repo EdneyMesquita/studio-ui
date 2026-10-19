@@ -8,6 +8,7 @@ pub mod chip;
 pub mod dialog;
 pub mod field;
 pub mod fit;
+pub mod granted;
 pub mod grid;
 pub mod hexview;
 pub mod inspector;

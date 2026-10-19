@@ -64,6 +64,14 @@ Initial extraction from the author's Modbus desktop client.
   inspector and decoder, Mb Studio's frame inspector and the MQTT packet inspector onto it.
   `cargo run --example hexview` draws an OPC UA, a Modbus and an MQTT message.
 - `RichGrid::scroll_to`, to bring a row into view.
+- `granted`: a protocol-neutral requested → granted list. `GrantList` over plain `Grant`s (key, requested,
+  granted, unit, what is in effect, a note) with a `State` the application works out (`Pending`,
+  `AsRequested`, `Revised`, `Granted`, `Default`, `Unsupported`; `State::compare` for the simple cases), drawn
+  as an inspector's `requested → granted unit` rows (OPC Studio's CreateSubscription inspector) or as a grid
+  with a column per side, what is in effect and a note (the MQTT CONNECT → CONNACK table). A revised or
+  unsupported value carries the mark (warn, medium weight); "not sent: as requested" and "absent: <default>"
+  are the states' own words. `inline_pieces` and `column_pieces` are pure and tested; `granted_color` and
+  `granted_font` serve grid cells that paint a granted value themselves. `cargo run --example granted`.
 
 ### Changed (relative to the source application)
 

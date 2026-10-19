@@ -157,6 +157,7 @@ Every module is under `studio_ui::widgets`.
 | `dialog` | `Dialog`: modal with title, icon, body and footer; `field_row` for labelled rows; `guard` for the typed confirmation of a dangerous action |
 | `field` | `qfield` and `qselect` (query-bar fields; `qselect` returns whether the selection changed), `search_field`, `text_input`, `text_input_invalid`, `password_input` |
 | `fit` | `Fit` and the `row` and `flow` helpers: toolbars that collapse to icons, then move items into a menu |
+| `granted` | `GrantList`, `Grant`, `State`: what a client requested and what the server granted, the revised ones marked, as inline rows or a grid with what is in effect |
 | `grid` | `Grid` and `Column`: virtualized data grid with a sticky header, an optional sticky first column, and click, double-click and right-click per row |
 | `hexview` | `FieldTable`, `HexBlock`, `Field`, `Class`, `legend`: a table of decoded fields and their bytes in hex, coloured by class, linked both ways (hover, click a byte to find its field), in the grid or mini style and in 16-byte lines or wrapped |
 | `inspector` | `Inspector`: resizable right-hand pane with head, body and optional foot; one width shared by all inspectors (`width`, `set_width`) |
@@ -173,7 +174,7 @@ Every module is under `studio_ui::widgets`.
 
 Examples in each module's documentation show the call patterns. The gallery example shows every section in
 both themes, with the calls that build each one: `cargo run --example gallery`. `cargo run --example timeline`
-draws a bus-like and a publish-like timeline. `cargo run --example hexview` draws three decoded messages.
+draws a bus-like and a publish-like timeline. `cargo run --example hexview` draws three decoded messages, `cargo run --example granted` two negotiations.
 
 ### Command palette
 
