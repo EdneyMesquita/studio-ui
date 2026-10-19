@@ -21,7 +21,7 @@
 //!
 //! | [`State`]       | means                                                     | inline granted          | columns: granted        | columns: in effect   |
 //! |-----------------|-----------------------------------------------------------|-------------------------|-------------------------|----------------------|
-//! | `Pending`       | no answer yet                                             | `-`, faint              | `—`, faint              | `—`, faint           |
+//! | `Pending`       | no answer yet                                             | `-`, faint (then the unit) | `—`, faint              | `—`, faint           |
 //! | `AsRequested`   | granted as asked, or the answer left it out               | the value               | the value, or `not sent: as requested`, faint | faint |
 //! | `Revised`       | the server changed it: **the mark**                       | warn, medium            | the value               | warn, medium         |
 //! | `Granted`       | a value of the server's own, not a revision (a limit)     | the value               | the value               | text                 |
@@ -208,10 +208,8 @@ pub fn inline_pieces(g: &Grant<'_>) -> Vec<Piece> {
     let value = g.granted.or(g.requested);
     let mut unit = true;
     match (g.state, g.granted) {
-        (State::Pending, _) => {
-            out.push(piece(PENDING_INLINE, Ink::Faint));
-            unit = false;
-        }
+        // OPC wrote the unit after the dash too: `100 → - ms`
+        (State::Pending, _) => out.push(piece(PENDING_INLINE, Ink::Faint)),
         (State::Revised, Some(v)) => out.push(piece(v, Ink::Mark)),
         (State::Unsupported, v) => {
             out.push(piece(v.unwrap_or(UNSUPPORTED), Ink::Mark));
@@ -547,7 +545,7 @@ mod tests {
             .requested("30")
             .unit(" ms");
         let p = inline_pieces(&pending);
-        assert_eq!(texts(&p), "30 \u{2192} -");
+        assert_eq!(texts(&p), "30 \u{2192} - ms");
         assert_eq!(p[2].ink, Ink::Faint);
         let unasked = Grant::new("LifetimeCount", State::Pending);
         assert_eq!(texts(&inline_pieces(&unasked)), "- \u{2192} -");
