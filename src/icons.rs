@@ -29,6 +29,7 @@ pub const CHEVRON_DOWN: &str = "\u{E06D}";
 pub const CHEVRON_LEFT: &str = "\u{E06E}";
 pub const CHEVRON_RIGHT: &str = "\u{E06F}";
 pub const CHEVRON_UP: &str = "\u{E070}";
+pub const CIRCLE: &str = "\u{E076}";
 pub const CIRCLE_ALERT: &str = "\u{E077}";
 pub const CIRCLE_CHECK: &str = "\u{E226}";
 pub const CIRCLE_DOT: &str = "\u{E345}";
@@ -47,6 +48,8 @@ pub const DATABASE: &str = "\u{E0AD}";
 pub const DOWNLOAD: &str = "\u{E0B2}";
 pub const ELLIPSIS: &str = "\u{E0B6}";
 pub const ELLIPSIS_VERTICAL: &str = "\u{E0B7}";
+pub const EQUAL_NOT: &str = "\u{E1BE}";
+pub const ERASER: &str = "\u{E28F}";
 pub const ETHERNET_PORT: &str = "\u{E620}";
 pub const EXTERNAL_LINK: &str = "\u{E0B9}";
 pub const EYE: &str = "\u{E0BA}";
@@ -68,11 +71,15 @@ pub const FUNNEL: &str = "\u{E0DC}";
 pub const FUNNEL_X: &str = "\u{E3B5}";
 pub const GAUGE: &str = "\u{E1BF}";
 pub const GIT_COMMIT_HORIZONTAL: &str = "\u{E0E3}";
+pub const GIT_FORK: &str = "\u{E28D}";
 pub const GIT_MERGE: &str = "\u{E0E4}";
 pub const GLOBE: &str = "\u{E0E8}";
 pub const GRIP_VERTICAL: &str = "\u{E0EB}";
 pub const HASH: &str = "\u{E0EF}";
+pub const HEART_PULSE: &str = "\u{E36E}";
 pub const HISTORY: &str = "\u{E1F5}";
+pub const HOURGLASS: &str = "\u{E296}";
+pub const HOUSE: &str = "\u{E0F5}";
 pub const IMPORT: &str = "\u{E22F}";
 pub const INBOX: &str = "\u{E0F7}";
 pub const INFO: &str = "\u{E0F9}";
@@ -111,9 +118,13 @@ pub const PLUS: &str = "\u{E13D}";
 pub const POWER: &str = "\u{E140}";
 pub const RADAR: &str = "\u{E497}";
 pub const RADIO: &str = "\u{E142}";
+pub const RADIO_TOWER: &str = "\u{E404}";
 pub const REFRESH_CW: &str = "\u{E145}";
+pub const REPEAT: &str = "\u{E146}";
 pub const ROUTE: &str = "\u{E53E}";
+pub const ROUTER: &str = "\u{E3BF}";
 pub const ROWS_3: &str = "\u{E58A}";
+pub const RSS: &str = "\u{E14A}";
 pub const SAVE: &str = "\u{E14D}";
 pub const SCAN: &str = "\u{E257}";
 pub const SEARCH: &str = "\u{E151}";
@@ -128,6 +139,7 @@ pub const SHIELD_X: &str = "\u{E200}";
 pub const SKULL: &str = "\u{E221}";
 pub const SLIDERS_HORIZONTAL: &str = "\u{E29A}";
 pub const SPARKLES: &str = "\u{E412}";
+pub const SPLIT: &str = "\u{E440}";
 pub const SQUARE: &str = "\u{E167}";
 pub const SQUARE_ACTIVITY: &str = "\u{E4B4}";
 pub const SQUARE_FUNCTION: &str = "\u{E22D}";
@@ -150,6 +162,7 @@ pub const USERS: &str = "\u{E1A4}";
 pub const USER_ROUND: &str = "\u{E468}";
 pub const VARIABLE: &str = "\u{E473}";
 pub const WAVES: &str = "\u{E283}";
+pub const WAYPOINTS: &str = "\u{E542}";
 pub const WIFI: &str = "\u{E1AE}";
 pub const WIFI_OFF: &str = "\u{E1AF}";
 pub const WORKFLOW: &str = "\u{E425}";
@@ -185,6 +198,7 @@ pub const ALL: &[(&str, &str)] = &[
     ("chevron-left", CHEVRON_LEFT),
     ("chevron-right", CHEVRON_RIGHT),
     ("chevron-up", CHEVRON_UP),
+    ("circle", CIRCLE),
     ("circle-alert", CIRCLE_ALERT),
     ("circle-check", CIRCLE_CHECK),
     ("circle-dot", CIRCLE_DOT),
@@ -203,6 +217,8 @@ pub const ALL: &[(&str, &str)] = &[
     ("download", DOWNLOAD),
     ("ellipsis", ELLIPSIS),
     ("ellipsis-vertical", ELLIPSIS_VERTICAL),
+    ("equal-not", EQUAL_NOT),
+    ("eraser", ERASER),
     ("ethernet-port", ETHERNET_PORT),
     ("external-link", EXTERNAL_LINK),
     ("eye", EYE),
@@ -224,11 +240,15 @@ pub const ALL: &[(&str, &str)] = &[
     ("funnel-x", FUNNEL_X),
     ("gauge", GAUGE),
     ("git-commit-horizontal", GIT_COMMIT_HORIZONTAL),
+    ("git-fork", GIT_FORK),
     ("git-merge", GIT_MERGE),
     ("globe", GLOBE),
     ("grip-vertical", GRIP_VERTICAL),
     ("hash", HASH),
+    ("heart-pulse", HEART_PULSE),
     ("history", HISTORY),
+    ("hourglass", HOURGLASS),
+    ("house", HOUSE),
     ("import", IMPORT),
     ("inbox", INBOX),
     ("info", INFO),
@@ -267,9 +287,13 @@ pub const ALL: &[(&str, &str)] = &[
     ("power", POWER),
     ("radar", RADAR),
     ("radio", RADIO),
+    ("radio-tower", RADIO_TOWER),
     ("refresh-cw", REFRESH_CW),
+    ("repeat", REPEAT),
     ("route", ROUTE),
+    ("router", ROUTER),
     ("rows-3", ROWS_3),
+    ("rss", RSS),
     ("save", SAVE),
     ("scan", SCAN),
     ("search", SEARCH),
@@ -284,6 +308,7 @@ pub const ALL: &[(&str, &str)] = &[
     ("skull", SKULL),
     ("sliders-horizontal", SLIDERS_HORIZONTAL),
     ("sparkles", SPARKLES),
+    ("split", SPLIT),
     ("square", SQUARE),
     ("square-activity", SQUARE_ACTIVITY),
     ("square-function", SQUARE_FUNCTION),
@@ -306,6 +331,7 @@ pub const ALL: &[(&str, &str)] = &[
     ("users", USERS),
     ("variable", VARIABLE),
     ("waves", WAVES),
+    ("waypoints", WAYPOINTS),
     ("wifi", WIFI),
     ("wifi-off", WIFI_OFF),
     ("workflow", WORKFLOW),

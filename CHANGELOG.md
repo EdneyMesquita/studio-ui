@@ -16,7 +16,7 @@ Initial extraction from the author's Modbus desktop client.
   `data`, `icon_font`).
 - Fonts: Inter (Regular, Medium, SemiBold) and JetBrains Mono (Regular, Medium), embedded with their license
   texts.
-- Icons: the Lucide icon font (153 glyphs), the `icons` glyph constants and `icons::ALL`; `theme::icon` and
+- Icons: the Lucide icon font (166 glyphs), the `icons` glyph constants and `icons::ALL`; `theme::icon` and
   `theme::paint_icon`. The font is produced by `tools/icons/generate.py` from a pinned lucide-static release
   (1.56.0), whose tarball is checked against its SHA-512 integrity string before use.
 - Widgets: `button`, `chart`, `check`, `chip`, `dialog`, `field`, `fit`, `grid`, `inspector`, `menu`,

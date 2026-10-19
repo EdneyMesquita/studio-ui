@@ -27,6 +27,7 @@ chevron-down
 chevron-left
 chevron-right
 chevron-up
+circle
 circle-alert
 circle-check
 circle-dot
@@ -45,6 +46,8 @@ database
 download
 ellipsis
 ellipsis-vertical
+equal-not
+eraser
 ethernet-port
 external-link
 eye
@@ -66,11 +69,15 @@ funnel
 funnel-x
 gauge
 git-commit-horizontal
+git-fork
 git-merge
 globe
 grip-vertical
 hash
+heart-pulse
 history
+hourglass
+house
 import
 inbox
 info
@@ -109,9 +116,13 @@ plus
 power
 radar
 radio
+radio-tower
 refresh-cw
+repeat
 route
+router
 rows-3
+rss
 save
 scan
 search
@@ -126,6 +137,7 @@ shield-x
 skull
 sliders-horizontal
 sparkles
+split
 square
 square-activity
 square-function
@@ -148,6 +160,7 @@ user-round
 users
 variable
 waves
+waypoints
 wifi
 wifi-off
 workflow
