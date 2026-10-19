@@ -11,6 +11,16 @@ src/
   theme.rs         color tokens (Theme, DARK, LIGHT), theme::identity, metrics, font families and helpers,
                    fonts(), style(), install(), paint_icon / icon
   icons.rs         Lucide glyph constants (one &str per icon) and ALL, the (name, glyph) pairs
+  chrome/
+    mod.rs         the IDE frame; shared layout maths: clamp_side_width, shares, shrink_all, find_ci,
+                   repaint_after, NARROW
+    tree.rs        tree rows of the side panel: node, Row, Lead, After, row_menu, geom
+    panel.rs       the side panel's frame: background, head, search, note, empty, body
+    stripe.rs      the tool stripe
+    tabs.rs        TabRow: the editor tab row, the tab drag payload, pane numbers
+    toolbar.rs     the main toolbar, record_button, theme_toggle
+    statusbar.rs   the status bar's segments and their fit, live_ring, pick_menu
+    welcome.rs     the welcome screen, watermark, pane_empty
   widgets/
     mod.rs         shared helpers: text, galley, hline / vline, tip, strip, focus rings
     button.rs      Btn builder, icon_button
@@ -34,6 +44,7 @@ src/
 assets/fonts/      TTF files and their license texts
 tools/icons/       generator for the icon font and src/icons.rs
 examples/gallery.rs  every widget section, in both themes (cargo run --example gallery)
+examples/chrome.rs   the whole IDE frame with fake data (cargo run --example chrome)
 ```
 
 Dependencies point one way. `theme` depends only on egui. `icons` depends on nothing. The widgets depend on
@@ -41,6 +52,12 @@ Dependencies point one way. `theme` depends only on egui. `icons` depends on not
 dialog uses `icon_button`, the connection chip and the text input; the menu uses the chip; `field`'s select
 and the palette use the menu's popups or its debugging hook; `rich_grid` reuses `grid`'s `Column`, `HEADER_H`
 and `ROW_H`. No module depends on an application.
+
+`chrome` sits on top of `widgets`: its modules use the strip, text and tooltip helpers, chips, menus and the
+search field, and nothing in `widgets` uses `chrome`. A chrome widget takes plain data and returns one
+`Response` per clickable part, indexed like its input; the menus, the tooltips' wording and what a click means
+stay in the application. Where Mb Studio and OPC Studio drew a part differently, the difference is a field or
+a builder method, so each app can keep its look.
 
 The crate depends on egui directly, and `lib.rs` re-exports that egui as `studio_ui::egui`. Applications use the
 re-export, so one egui version is in use across the crate and the application.

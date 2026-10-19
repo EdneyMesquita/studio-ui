@@ -12,6 +12,7 @@
 //!
 //! Every widget reads its colors from [`theme::Theme`]; nothing here knows about any product's domain.
 
+pub mod chrome;
 pub mod icons;
 pub mod theme;
 pub mod widgets;

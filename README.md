@@ -213,6 +213,25 @@ reads `inspector::width(ctx)` when it saves its settings, and calls `inspector::
 fixed-height toolbar row), and the keyboard focus rings `focus_ring` and `focus_ring_inset`. Call
 `widgets::track_focus_visible(ctx)` once per frame so focus rings appear only after keyboard navigation.
 
+## Chrome
+
+`studio_ui::chrome` holds the IDE frame of the family apps, protocol-neutral: the app supplies the content
+(labels, icons, identity colours, which panels exist) and gets one response per clickable part back, to attach
+its own menus, tooltips and actions. The docking itself (the panels, the side panel's resizer) stays in the app.
+
+| Module | Provides |
+|--------|----------|
+| `tree` | `node`, `Row`, `Lead`, `After`, `NodeResp`, `row_menu`, `nothing_matches`, `geom`: 24 px tree rows of the side panel |
+| `panel` | `background`, `head`, `head_count`, `search`, `note` and `Note`, `empty`, `body` and `Body`: the side panel's frame |
+| `stripe` | `stripe`, `StripeItem`, `StripeResponse`, `top_slot`, `bottom_slot`, `hit`: the 40 px tool stripe |
+| `tabs` | `TabRow`, `Tab`, `PaneMark`, `Dirty`, `More`, `TabDrag`, `dragged`, `paint_pane_number`: the editor tab row |
+| `toolbar` | `toolbar`, `Toolbar`, `ConnWidget`, `Crumb`, `record_button`, `theme_toggle`, `paint_tint`: the 40 px main toolbar |
+| `statusbar` | `statusbar`, `Seg`, `Shrink`, `Gives`, `fit`, `live_ring`, `pick_menu`: the 26 px status bar |
+| `welcome` | `show`, `Welcome`, `WelcomeRow`, `layout`, `watermark`, `pane_empty`: what the editor shows with nothing open |
+
+`cargo run --example chrome` draws the whole frame with fake data: an explorer that mixes three kinds of
+connection, the tabs, the status bar, and the welcome screen once every tab is closed.
+
 ## Icons
 
 `studio_ui::icons` holds the glyph of each icon as a string constant (for example `icons::SAVE`,

@@ -40,6 +40,17 @@ Initial extraction from the author's Modbus desktop client.
 - CI workflow: format, clippy, tests and example builds on Linux, macOS and Windows; the public-readiness check
   and a gitleaks secret scan on Linux. Manual only (`workflow_dispatch`) while the repository is private.
 - `scripts/ci-local.sh`: the same checks on the developer's machine, run by the `pre-push` hook.
+- `chrome`: the IDE frame both desktop apps drew by hand, protocol-neutral. `tree` (rows with twisty, identity
+  chip or icon, badge, label with a filter highlight and an optional faint tag, marks, a link button and the
+  "⋯" menu button, opt-in guides), `panel` (background, head with buttons and a count, search, note, empty
+  line, scrolling body with an optional foot), `stripe` (tool buttons with an attention dot and a bottom
+  slot), `tabs` (identity dot and underline, pane number, dirty dot, close, overflow menu, a trailing slot,
+  drag to reorder), `toolbar` (mark, connection widget, breadcrumbs that clip before the centred search box,
+  the identity tint, `record_button`, `theme_toggle`), `statusbar` (segments with tiered shrinking, the live
+  dot, a badge, `pick_menu`) and `welcome` (the welcome screen, `watermark`, `pane_empty`); the shared
+  layout maths in `chrome` (`clamp_side_width`, `shares`, `shrink_all`, `find_ci`, `repaint_after`). Each
+  module's docs map Mb Studio's and OPC Studio's code onto it. `cargo run --example chrome` draws the
+  whole frame with fake data.
 
 ### Changed (relative to the source application)
 

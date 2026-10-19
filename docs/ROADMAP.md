@@ -26,9 +26,9 @@ API friction found while writing the gallery:
 
 ## Planned work
 
-- Sibling crate `studio-shell`: application chrome shared by the desktop apps, such as the toolbar, the tool
-  stripe, the explorer tree, tabs, the status bar, and the panel head with its search and empty states. Each
-  application should not carry its own copy.
+- The rest of the application chrome: the docking of the panels (the side panel's resizer, its float over the
+  editor in a narrow window) and the editor's split panes. The frame's widgets are in, as `chrome`; both apps
+  still carry this layout code.
 - Sibling crate `studio-platform`: operating-system and remote services, such as secret storage in the OS
   keychain, SSH tunnels, and logging that never records secrets. They stay out of the UI crate because they
   depend on the system.
