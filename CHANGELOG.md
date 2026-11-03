@@ -23,6 +23,10 @@ Initial extraction from the author's Modbus desktop client.
   `metrics`, `notice`, `palette`, `rich_grid`, `sec`, `seg`, `switch`, `timeline` and `toast`, with the
   shared helpers in `widgets`.
 - `dialog::guard`: the typed confirmation of a dangerous action.
+- Wording hooks for apps that are not in English (the defaults stay English): `welcome::show_with` and
+  `WelcomeText` (the `Start` and `Connect` heads), `toolbar::theme_toggle_with`, `Dialog::close_tip`,
+  `tree::nothing_matches_with` and `Inspector::copy_tip`.
+- `Seg::clickable`: an identity status-bar segment that hovers and answers clicks like a button.
 - `timeline`: a protocol-neutral timeline. Lanes of spans and marks on a time axis with the "now" edge at the
   right; kinds that map onto theme colours (send, wait, receive, ok, warn, danger, idle, faint, a hatched
   timeout and a hatched gap); an automatic millisecond axis or the caller's ticks; two layouts (`DEFAULT`, the
