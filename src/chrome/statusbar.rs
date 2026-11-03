@@ -122,6 +122,8 @@ pub struct Seg<'a> {
     pub hide_below: Option<f32>,
     /// Its widget id salt (keeps a menu open while other segments come and go); the position otherwise.
     pub id: Option<&'a str>,
+    /// For an identity segment: it senses clicks (and the pointer shows it), answering like the buttons.
+    pub clickable: bool,
 }
 
 impl<'a> Seg<'a> {
@@ -138,6 +140,7 @@ impl<'a> Seg<'a> {
             shrink: None,
             hide_below: None,
             id: None,
+            clickable: false,
         }
     }
 
@@ -230,6 +233,13 @@ impl<'a> Seg<'a> {
         if let SegKind::Identity { gives, .. } = &mut self.kind {
             *gives = how;
         }
+        self
+    }
+
+    /// For an identity segment: it can be clicked, and its response says so like a button's.
+    #[must_use]
+    pub const fn clickable(mut self) -> Self {
+        self.clickable = true;
         self
     }
 
@@ -481,7 +491,12 @@ pub fn statusbar(ui: &mut Ui, segs: &[Seg<'_>]) -> Vec<Option<Response>> {
             }
             SegKind::Identity { .. } => {
                 let Some(id_parts) = &ident else { continue };
-                let resp = ui.interact(r, id, Sense::hover());
+                // clickable, it hovers and answers like a button
+                let resp = if s.clickable {
+                    button(ui, r, id, t, t.text).0
+                } else {
+                    ui.interact(r, id, Sense::hover())
+                };
                 paint_identity(ui, r, s, id_parts, t);
                 out[k] = Some(resp);
             }
@@ -669,10 +684,31 @@ mod tests {
                 ..
             }
         ));
+        // not clickable unless asked
+        assert!(!Seg::identity(None, "x", None).clickable);
+        assert!(Seg::identity(None, "x", None).clickable().clickable);
         // `gives` leaves other kinds alone
         assert!(matches!(
             Seg::text("x").gives(Gives::DetailFirst).kind,
             SegKind::Plain
         ));
+    }
+
+    #[test]
+    fn a_clickable_identity_senses_clicks() {
+        let ctx = egui::Context::default();
+        crate::theme::install(&ctx);
+        let mut senses = Vec::new();
+        let mut frame = ctx.run_ui(egui::RawInput::default(), |ui| {
+            let segs = [
+                Seg::identity(None, "A", None),
+                Seg::identity(None, "B", None).clickable(),
+            ];
+            for r in statusbar(ui, &segs).into_iter().flatten() {
+                senses.push(r.sense.senses_click());
+            }
+        });
+        frame.textures_delta.clear();
+        assert_eq!(senses, [false, true]);
     }
 }
