@@ -23,6 +23,7 @@ pub struct Dialog<'a> {
     icon: Option<(&'a str, Color32)>,
     width: f32,
     footer_start: bool,
+    close_tip: &'a str,
 }
 
 #[derive(Debug)]
@@ -53,6 +54,7 @@ impl<'a> Dialog<'a> {
             // Rabbit's `Modal`: `max-w-md`
             width: 448.0,
             footer_start: false,
+            close_tip: "Close",
         }
     }
     pub fn icon(mut self, glyph: &'a str, color: Color32) -> Self {
@@ -68,6 +70,11 @@ impl<'a> Dialog<'a> {
     /// added first (the `ConfirmDialog` way).
     pub fn footer_start(mut self) -> Self {
         self.footer_start = true;
+        self
+    }
+    /// The close button's tooltip (`Close`), in the app's language.
+    pub fn close_tip(mut self, tip: &'a str) -> Self {
+        self.close_tip = tip;
         self
     }
     /// The whole width, border included: 448 (default, `max-w-md`), 460, 560, 640.
@@ -110,7 +117,7 @@ impl<'a> Dialog<'a> {
                     let title = self.title.clone();
                     ui.add(egui::Label::new(title).truncate());
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        if super::icon_button(ui, icons::X, 28.0, "Close").clicked() {
+                        if super::icon_button(ui, icons::X, 28.0, self.close_tip).clicked() {
                             close_btn = true;
                         }
                     });
@@ -217,4 +224,18 @@ pub fn guard(
     let ok = buf.trim() == word;
     let resp = input.unwrap_or_else(|| ui.label(""));
     (ok, resp)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn close_tip_defaults_to_english_and_can_be_replaced() {
+        assert_eq!(Dialog::new("d", "t").close_tip, "Close");
+        assert_eq!(
+            Dialog::new("d", "t").close_tip("Fechar").close_tip,
+            "Fechar"
+        );
+    }
 }

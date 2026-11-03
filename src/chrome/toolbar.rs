@@ -350,10 +350,16 @@ fn crumbs(ui: &mut Ui, items: &[Crumb<'_>], t: &Theme, right: f32) {
 
 /// The light / dark switch: a sun in the dark theme, a moon in the light one.
 pub fn theme_toggle(ui: &mut Ui) -> Response {
+    theme_toggle_with(ui, "Switch to light theme", "Switch to dark theme")
+}
+
+/// [`theme_toggle`] with its tooltips in the app's language: `to_light` is shown in the dark theme (the
+/// button goes to the light one), `to_dark` in the light theme.
+pub fn theme_toggle_with(ui: &mut Ui, to_light: &str, to_dark: &str) -> Response {
     let (glyph, tip) = if theme::theme(ui).dark {
-        (icons::SUN, "Switch to light theme")
+        (icons::SUN, to_light)
     } else {
-        (icons::MOON, "Switch to dark theme")
+        (icons::MOON, to_dark)
     };
     widgets::icon_button(ui, glyph, theme::CONTROL, tip)
 }
@@ -450,5 +456,18 @@ mod tests {
         let w = crumb_widths(&[60.0, 30.0, 10.0], 5.0, 15.0 + 10.0 + 50.0);
         assert!((w.iter().sum::<f32>() - 50.0).abs() < 1e-3);
         assert!(crumb_widths(&[], 5.0, 10.0).is_empty());
+    }
+
+    #[test]
+    fn theme_toggle_with_draws_in_both_themes() {
+        let ctx = egui::Context::default();
+        crate::theme::install(&ctx);
+        for theme in [egui::Theme::Dark, egui::Theme::Light] {
+            ctx.set_theme(theme);
+            let mut frame = ctx.run_ui(egui::RawInput::default(), |ui| {
+                theme_toggle_with(ui, "Tema claro", "Tema escuro");
+            });
+            frame.textures_delta.clear();
+        }
     }
 }

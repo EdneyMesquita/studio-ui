@@ -429,13 +429,13 @@ pub fn row_menu(nr: &NodeResp, key: impl FnOnce() -> String, mut add: impl FnMut
 /// The line a filtered tree shows when nothing matches (Rabbit: `px-3 py-2.5 text-sm text-fg-3`), one
 /// line: `Nothing matches “{filter}”.`
 pub fn nothing_matches(ui: &mut Ui, filter: &str) {
+    nothing_matches_with(ui, &format!("Nothing matches \u{201c}{filter}\u{201d}."));
+}
+
+/// [`nothing_matches`] with the whole line given: the app words it (and quotes the filter) in its language.
+pub fn nothing_matches_with(ui: &mut Ui, text: &str) {
     let t = theme::theme(ui);
-    let g = widgets::galley(
-        ui,
-        format!("Nothing matches \u{201c}{filter}\u{201d}."),
-        theme::ui_font(theme::FS_SM),
-        t.text_3,
-    );
+    let g = widgets::galley(ui, text.to_owned(), theme::ui_font(theme::FS_SM), t.text_3);
     let (r, _) = ui.allocate_exact_size(
         Vec2::new(ui.available_width(), g.size().y + 20.0),
         Sense::hover(),
@@ -510,5 +510,16 @@ mod tests {
             // the twisty's centre column, its left pixel
             assert_eq!(guide_x(r.left(), level), parent.twisty.left() + 7.5);
         }
+    }
+
+    #[test]
+    fn nothing_matches_with_takes_the_whole_line() {
+        let ctx = egui::Context::default();
+        crate::theme::install(&ctx);
+        let mut frame = ctx.run_ui(egui::RawInput::default(), |ui| {
+            nothing_matches(ui, "x");
+            nothing_matches_with(ui, "Nada corresponde a \u{201c}x\u{201d}.");
+        });
+        frame.textures_delta.clear();
     }
 }

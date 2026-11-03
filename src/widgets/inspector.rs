@@ -162,6 +162,7 @@ pub struct Inspector<'a> {
     title: &'a str,
     id_text: Option<&'a str>,
     copy: Option<&'a str>,
+    copy_tip: &'a str,
 }
 
 /// What happened in the inspector chrome this frame.
@@ -178,6 +179,7 @@ impl<'a> Inspector<'a> {
             title,
             id_text: None,
             copy: None,
+            copy_tip: "Copy",
         }
     }
     /// Faint mono id after the title (`3 · setpoint`).
@@ -188,6 +190,12 @@ impl<'a> Inspector<'a> {
     /// Show a copy button that puts `text` on the clipboard.
     pub fn copy(mut self, text: &'a str) -> Self {
         self.copy = Some(text);
+        self
+    }
+
+    /// The copy button's tooltip (`Copy`), in the app's language.
+    pub fn copy_tip(mut self, tip: &'a str) -> Self {
+        self.copy_tip = tip;
         self
     }
 
@@ -284,7 +292,7 @@ impl<'a> Inspector<'a> {
                 }
                 if let Some(text) = self.copy {
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        if super::icon_button(ui, icons::COPY, 24.0, "Copy").clicked() {
+                        if super::icon_button(ui, icons::COPY, 24.0, self.copy_tip).clicked() {
                             ui.ctx().copy_text(text.to_owned());
                             out.copied = true;
                         }
@@ -436,5 +444,14 @@ mod tests {
         assert_eq!(side_rect(room(300.0, 560.0), 640.0), room(300.0, 640.0));
         // a drag started in a narrow pane starts from the shared width, not from the pane's
         assert_eq!(drag_width(640.0, 300.0, 340.0), 600.0);
+    }
+
+    #[test]
+    fn copy_tip_defaults_to_english_and_can_be_replaced() {
+        assert_eq!(Inspector::new("i", "t").copy_tip, "Copy");
+        assert_eq!(
+            Inspector::new("i", "t").copy_tip("Copiar").copy_tip,
+            "Copiar"
+        );
     }
 }

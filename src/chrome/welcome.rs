@@ -34,6 +34,7 @@
 //! | the four Start rows (the first says `Add your first connection` with no connection) | four [`WelcomeRow`]s with [`Lead::Icon`] and [`Trail::Kbd`] |
 //! | a connection: chip, name, `site · ` + the address in data font; the error in danger; the spinner while it connects (disabled) | [`Lead::Chip`], [`Trail::Detail`] (`color: Some(danger)` for the error), [`Trail::Spinner`] with `.enabled(false)` |
 //! | the empty Connect text | [`Welcome::connect_empty`] |
+//! | the `Start` and `Connect` heads in another language | [`show_with`] and [`WelcomeText`] |
 //! | `PROMISES` and the logo | [`Welcome::promises`], [`Welcome::mark`] |
 //! | `layout`, `promise_columns` (`rows_left` was 4) | [`layout`] (with `n_start`), [`promise_columns`] |
 //! | `watermark` | [`watermark`] with the same four rows |
@@ -154,6 +155,25 @@ impl std::fmt::Debug for Welcome<'_> {
     }
 }
 
+/// The words the screen itself writes, apart from what [`Welcome`] carries. The default is the English the
+/// kit has always shown, so [`show`] is unchanged; [`show_with`] takes another language's.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct WelcomeText<'a> {
+    /// The head over the first column (`Start`).
+    pub start_title: &'a str,
+    /// The head over the second column (`Connect`).
+    pub connect_title: &'a str,
+}
+
+impl Default for WelcomeText<'_> {
+    fn default() -> Self {
+        Self {
+            start_title: "Start",
+            connect_title: "Connect",
+        }
+    }
+}
+
 /// The row clicked, by column.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct WelcomeResponse {
@@ -163,6 +183,11 @@ pub struct WelcomeResponse {
 
 /// The welcome screen in the editor's remaining space; it scrolls when the window is too short.
 pub fn show(ui: &mut Ui, w: &Welcome<'_>) -> WelcomeResponse {
+    show_with(ui, w, &WelcomeText::default())
+}
+
+/// [`show`] with the column heads in `text` (the app's language).
+pub fn show_with(ui: &mut Ui, w: &Welcome<'_>, text: &WelcomeText<'_>) -> WelcomeResponse {
     let avail = ui.available_rect_before_wrap();
     let window = window_width(ui);
     let promises = promises(ui, w, avail.width(), window);
@@ -177,7 +202,7 @@ pub fn show(ui: &mut Ui, w: &Welcome<'_>) -> WelcomeResponse {
         + 2.0 * PAD_Y;
     if need <= avail.height() {
         ui.allocate_rect(avail, Sense::hover());
-        return paint(ui, avail, window, w, &promises);
+        return paint(ui, avail, window, w, text, &promises);
     }
     // a short window: the screen scrolls instead of running off the bottom
     egui::ScrollArea::vertical()
@@ -186,7 +211,7 @@ pub fn show(ui: &mut Ui, w: &Welcome<'_>) -> WelcomeResponse {
         .show(ui, |ui| {
             let (r, _) =
                 ui.allocate_exact_size(Vec2::new(ui.available_width(), need), Sense::hover());
-            paint(ui, r, window, w, &promises)
+            paint(ui, r, window, w, text, &promises)
         })
         .inner
 }
@@ -321,6 +346,7 @@ fn paint(
     avail: Rect,
     window: f32,
     wl: &Welcome<'_>,
+    text: &WelcomeText<'_>,
     promises: &Promises,
 ) -> WelcomeResponse {
     let t = theme::theme(ui);
@@ -377,7 +403,7 @@ fn paint(
         )
     };
 
-    section(ui, t, start.min, "Start");
+    section(ui, t, start.min, text.start_title);
     start.min.y += SECTION_H;
     for (k, row) in wl.start.iter().enumerate() {
         let r = Rect::from_min_size(
@@ -389,7 +415,7 @@ fn paint(
         }
     }
 
-    section(ui, t, connect.min, "Connect");
+    section(ui, t, connect.min, text.connect_title);
     connect.min.y += SECTION_H;
     if wl.connect.is_empty() {
         // `py-2 text-sm text-fg-3`, wrapping in its column
@@ -682,6 +708,33 @@ mod tests {
             promise_columns([60.0, 50.0, 70.0], [200.0, 120.0, 180.0], 100.0),
             [60.0, 50.0, 70.0]
         );
+    }
+
+    #[test]
+    fn column_heads_default_to_english_and_can_be_replaced() {
+        let d = WelcomeText::default();
+        assert_eq!((d.start_title, d.connect_title), ("Start", "Connect"));
+        let ctx = egui::Context::default();
+        crate::theme::install(&ctx);
+        let mark = |_: &Painter, _: Rect| {};
+        let w = Welcome {
+            mark: &mark,
+            title: "App",
+            version: "v",
+            start: &[],
+            connect: &[],
+            connect_empty: "none",
+            promises: [("a", "a"), ("b", "b"), ("c", "c")],
+        };
+        let text = WelcomeText {
+            start_title: "Comecar",
+            connect_title: "Conectar",
+        };
+        let mut frame = ctx.run_ui(egui::RawInput::default(), |ui| {
+            show(ui, &w);
+            show_with(ui, &w, &text);
+        });
+        frame.textures_delta.clear();
     }
 
     #[test]
