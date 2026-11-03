@@ -9,7 +9,7 @@ It is:
 
 - A dark and a light theme, expressed as color tokens and mapped onto `egui::Style`.
 - Inter and JetBrains Mono, embedded, with named font helpers.
-- The Lucide icon font (166 glyphs), with glyph constants.
+- The Lucide icon font (175 glyphs), with glyph constants.
 - Widgets painted by hand to match the family's design in both themes: buttons, data grids, inspector panes,
   the command palette, charts, timelines, dialogs, menus, toasts, notices and form fields.
 
@@ -247,7 +247,7 @@ studio_ui::theme::icon(ui, studio_ui::icons::SAVE, studio_ui::theme::ICON, t.tex
 
 or, when you have a painter and a center point, `theme::paint_icon(painter, center, glyph, size, color)`.
 
-The font is a subset of the pinned lucide-static release (1.56.0) that holds the 166 icons listed in
+The font is a subset of the pinned lucide-static release (1.56.0) that holds the 175 icons listed in
 `tools/icons/icons.txt`. The glyph list in `src/icons.rs` and the subset in `assets/fonts/lucide.ttf` must
 stay in step. Both are produced by `tools/icons/generate.py`; see [tools/icons/README.md](tools/icons/README.md)
 for adding an icon. Lucide is licensed under ISC, and the icons derived from Feather are also under the MIT

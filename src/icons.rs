@@ -17,6 +17,7 @@ pub const BADGE_CHECK: &str = "\u{E241}";
 pub const BAN: &str = "\u{E051}";
 pub const BELL: &str = "\u{E059}";
 pub const BINARY: &str = "\u{E1F2}";
+pub const BLOCKS: &str = "\u{E4FA}";
 pub const BOOK_OPEN: &str = "\u{E05F}";
 pub const BOX: &str = "\u{E061}";
 pub const BRACES: &str = "\u{E36A}";
@@ -39,13 +40,16 @@ pub const CIRCLE_PLAY: &str = "\u{E080}";
 pub const CIRCLE_X: &str = "\u{E084}";
 pub const CLOCK: &str = "\u{E087}";
 pub const CLOUD: &str = "\u{E088}";
+pub const CLOUD_UPLOAD: &str = "\u{E091}";
 pub const CODE: &str = "\u{E093}";
 pub const COLUMNS_2: &str = "\u{E098}";
 pub const COMMAND: &str = "\u{E09A}";
+pub const COMPASS: &str = "\u{E09B}";
 pub const COPY: &str = "\u{E09E}";
 pub const CPU: &str = "\u{E0A9}";
 pub const DATABASE: &str = "\u{E0AD}";
 pub const DOWNLOAD: &str = "\u{E0B2}";
+pub const DROPLETS: &str = "\u{E0B5}";
 pub const ELLIPSIS: &str = "\u{E0B6}";
 pub const ELLIPSIS_VERTICAL: &str = "\u{E0B7}";
 pub const EQUAL_NOT: &str = "\u{E1BE}";
@@ -75,6 +79,8 @@ pub const GIT_FORK: &str = "\u{E28D}";
 pub const GIT_MERGE: &str = "\u{E0E4}";
 pub const GLOBE: &str = "\u{E0E8}";
 pub const GRIP_VERTICAL: &str = "\u{E0EB}";
+pub const HAMMER: &str = "\u{E0EC}";
+pub const HAND: &str = "\u{E1D7}";
 pub const HASH: &str = "\u{E0EF}";
 pub const HEART_PULSE: &str = "\u{E36E}";
 pub const HISTORY: &str = "\u{E1F5}";
@@ -136,16 +142,19 @@ pub const SHIELD: &str = "\u{E158}";
 pub const SHIELD_ALERT: &str = "\u{E1FE}";
 pub const SHIELD_CHECK: &str = "\u{E1FF}";
 pub const SHIELD_X: &str = "\u{E200}";
+pub const SHOWER_HEAD: &str = "\u{E37C}";
 pub const SKULL: &str = "\u{E221}";
 pub const SLIDERS_HORIZONTAL: &str = "\u{E29A}";
 pub const SPARKLES: &str = "\u{E412}";
 pub const SPLIT: &str = "\u{E440}";
+pub const SPROUT: &str = "\u{E1EB}";
 pub const SQUARE: &str = "\u{E167}";
 pub const SQUARE_ACTIVITY: &str = "\u{E4B4}";
 pub const SQUARE_FUNCTION: &str = "\u{E22D}";
 pub const STAR: &str = "\u{E176}";
 pub const SUN: &str = "\u{E178}";
 pub const TABLE: &str = "\u{E17D}";
+pub const TABLET_SMARTPHONE: &str = "\u{E50A}";
 pub const TAG: &str = "\u{E17F}";
 pub const TERMINAL: &str = "\u{E181}";
 pub const TEXT: &str = "\u{E185}";
@@ -186,6 +195,7 @@ pub const ALL: &[(&str, &str)] = &[
     ("ban", BAN),
     ("bell", BELL),
     ("binary", BINARY),
+    ("blocks", BLOCKS),
     ("book-open", BOOK_OPEN),
     ("box", BOX),
     ("braces", BRACES),
@@ -208,13 +218,16 @@ pub const ALL: &[(&str, &str)] = &[
     ("circle-x", CIRCLE_X),
     ("clock", CLOCK),
     ("cloud", CLOUD),
+    ("cloud-upload", CLOUD_UPLOAD),
     ("code", CODE),
     ("columns-2", COLUMNS_2),
     ("command", COMMAND),
+    ("compass", COMPASS),
     ("copy", COPY),
     ("cpu", CPU),
     ("database", DATABASE),
     ("download", DOWNLOAD),
+    ("droplets", DROPLETS),
     ("ellipsis", ELLIPSIS),
     ("ellipsis-vertical", ELLIPSIS_VERTICAL),
     ("equal-not", EQUAL_NOT),
@@ -244,6 +257,8 @@ pub const ALL: &[(&str, &str)] = &[
     ("git-merge", GIT_MERGE),
     ("globe", GLOBE),
     ("grip-vertical", GRIP_VERTICAL),
+    ("hammer", HAMMER),
+    ("hand", HAND),
     ("hash", HASH),
     ("heart-pulse", HEART_PULSE),
     ("history", HISTORY),
@@ -305,16 +320,19 @@ pub const ALL: &[(&str, &str)] = &[
     ("shield-alert", SHIELD_ALERT),
     ("shield-check", SHIELD_CHECK),
     ("shield-x", SHIELD_X),
+    ("shower-head", SHOWER_HEAD),
     ("skull", SKULL),
     ("sliders-horizontal", SLIDERS_HORIZONTAL),
     ("sparkles", SPARKLES),
     ("split", SPLIT),
+    ("sprout", SPROUT),
     ("square", SQUARE),
     ("square-activity", SQUARE_ACTIVITY),
     ("square-function", SQUARE_FUNCTION),
     ("star", STAR),
     ("sun", SUN),
     ("table", TABLE),
+    ("tablet-smartphone", TABLET_SMARTPHONE),
     ("tag", TAG),
     ("terminal", TERMINAL),
     ("text", TEXT),
